@@ -39,7 +39,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup .NET build dependencies
-      uses: timheuer/bootstrap-dotnet@v2
+      uses: timheuer/bootstrap-dotnet@v1
       with:
         nuget: 'false'
         sdk: 'false'
