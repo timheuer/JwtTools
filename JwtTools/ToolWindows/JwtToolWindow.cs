@@ -22,7 +22,7 @@ namespace JwtTools
         {
             public Pane()
             {
-                BitmapImageMoniker = KnownMonikers.ToolWindow;
+                BitmapImageMoniker = KnownMonikers.Certificate;
             }
         }
     }

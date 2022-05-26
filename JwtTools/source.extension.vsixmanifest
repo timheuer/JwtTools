@@ -4,9 +4,13 @@
         <Identity Id="JwtTools.b881ac88-93df-401b-9ff7-03b5d3800e5c" Version="0.2" Language="en-US" Publisher="Tim Heuer" />
         <DisplayName>JwtTools</DisplayName>
         <Description xml:space="preserve">A tool window to help with JWT token decoding and other things.</Description>
+        <MoreInfo>https://github.com/timheuer/JwtTools</MoreInfo>
+        <License>LICENSE.txt</License>
+        <GettingStartedGuide>https://github.com/timheuer/JwtTools</GettingStartedGuide>
+        <ReleaseNotes>https://github.com/timheuer/JwtTools</ReleaseNotes>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
-        <Tags>aspnet,</Tags>
+        <Tags>aspnet, jwt, identity</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">

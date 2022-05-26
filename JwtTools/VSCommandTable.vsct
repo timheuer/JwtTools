@@ -11,7 +11,7 @@
     <Buttons>
       <Button guid="JwtTools" id="MyCommand" priority="0x0100" type="Button">
         <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
-        <Icon guid="ImageCatalogGuid" id="ToolWindow" />
+	    <Icon guid="ImageCatalogGuid" id="Certificate" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <ButtonText>JWT Tools</ButtonText>
