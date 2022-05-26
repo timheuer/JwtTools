@@ -10,7 +10,7 @@
         <ReleaseNotes>https://github.com/timheuer/JwtTools</ReleaseNotes>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
-        <Tags>aspnet, jwt, identity</Tags>
+        <Tags>aspnet, jwt, identity, webapi, bearer, netcore, json</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">

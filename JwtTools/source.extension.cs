@@ -13,6 +13,6 @@ namespace JwtTools
         public const string Language = "en-US";
         public const string Version = "0.2";
         public const string Author = "Tim Heuer";
-        public const string Tags = "aspnet, jwt, identity";
+        public const string Tags = "aspnet, jwt, identity, webapi, bearer, netcore, json";
     }
 }
