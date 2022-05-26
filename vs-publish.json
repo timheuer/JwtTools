@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json.schemastore.org/vsix-publish",
+  "categories": [ "testing", "web", "other" ],
+  "identity": {
+    "internalName": "JwtTools",
+    "tags": [ "jwt", "dotnet", "aspnet" ]
+  },
+  "overview": "README.md",
+  "publisher": "TimHeuer",
+  "repo": "https://github.com/timheuer/JwtTools"
+}
