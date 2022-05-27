@@ -15,11 +15,12 @@
              Name="MyToolWindow">
     <StackPanel Margin="0,0,0,-62">
         <Button Click="button1_Click" Width="200" Content="Decode Token" HorizontalAlignment="Left"/>
-        <Label Content="JWT Token" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="JwtToken" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60"/>
-        <Label Content="Header" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="DecodedHeader" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True"/>
-        <Label Content="Payload" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="DecodedPayload" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" />
+        <Label Content="Encoded Token" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="JwtToken" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" 
+                 FontFamily="Cascadia Mono, Cascadia Code" GotFocus="JwtToken_GotFocus" />
+        <Label Content="Header: Algorithm &amp; Token Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="DecodedHeader" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" FontFamily="Cascadia Mono, Cascadia Code"/>
+        <Label Content="Payload: Data" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="DecodedPayload" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" FontFamily="Cascadia Mono, Cascadia Code" />
     </StackPanel>
 </UserControl>

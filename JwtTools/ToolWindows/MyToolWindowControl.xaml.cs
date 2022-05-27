@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using JwtTools.Helpers;
+using System.Runtime.Remoting.Messaging;
 
 namespace JwtTools
 {
@@ -18,11 +19,31 @@ namespace JwtTools
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            JwtSecurityTokenHandler jwtHandler = new();
-            var jwt = jwtHandler.ReadJwtToken(JwtToken.Text);
+            if (string.IsNullOrWhiteSpace(JwtToken.Text))
+            {
+                DecodedHeader.Text = string.Empty;
+                DecodedPayload.Text = string.Empty;
+                return;
+            }
 
-            DecodedHeader.Text = JsonHelper.Format(jwt.Header.SerializeToJson(), Indentation.TwoSpaces);
-            DecodedPayload.Text = JsonHelper.Format(jwt.Payload.SerializeToJson(), Indentation.TwoSpaces);
+            try
+            {
+                JwtSecurityTokenHandler jwtHandler = new();
+                var jwt = jwtHandler.ReadJwtToken(JwtToken.Text);
+
+                DecodedHeader.Text = JsonHelper.Format(jwt.Header.SerializeToJson(), Indentation.TwoSpaces);
+                DecodedPayload.Text = JsonHelper.Format(jwt.Payload.SerializeToJson(), Indentation.TwoSpaces);
+            }
+            catch (Exception ex)
+            {
+                DecodedHeader.Text = ex.Message;
+                DecodedPayload.Text = ex.Message;
+            }
+        }
+
+        private void JwtToken_GotFocus(object sender, RoutedEventArgs e)
+        {
+            JwtToken.SelectAll();
         }
     }
 }
