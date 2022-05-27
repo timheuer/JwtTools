@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 // the following is from the DevToys project JsonHelpers
 // https://github.com/veler/DevToys/
@@ -38,7 +34,7 @@ namespace JwtTools.Helpers
                 // Exception in parsing json. It likely mean the text isn't a JSON.
                 return false;
             }
-            catch (Exception ex) //some other exception
+            catch (Exception) //some other exception
             {
                 return false;
             }
