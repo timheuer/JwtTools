@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Helpers\Indentation.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Models\SimpleClaim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
     <Compile Include="JwtToolsPackage.cs" />

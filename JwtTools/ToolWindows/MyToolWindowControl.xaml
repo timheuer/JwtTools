@@ -21,6 +21,26 @@
         <Label Content="Header: Algorithm &amp; Token Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ContentControl x:Name="DecodedHeader" VerticalAlignment="Top" MinHeight="90" MaxHeight="100" />
         <Label Content="Payload: Data" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ContentControl x:Name="DecodedPayload" VerticalAlignment="Top" MinHeight="110" />
+        <TabControl MinHeight="125">
+            <TabItem Header="Raw">
+                <ContentControl x:Name="DecodedPayload" VerticalAlignment="Top" MinHeight="120" />
+            </TabItem>
+            <TabItem Header="Claims">
+                <DataGrid x:Name="ClaimsGrid" AutoGenerateColumns="False" MaxHeight="500">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="185"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="700">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        
     </StackPanel>
 </UserControl>
