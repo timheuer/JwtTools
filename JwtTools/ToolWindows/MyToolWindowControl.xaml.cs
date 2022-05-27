@@ -76,7 +76,6 @@ namespace JwtTools
                 var textViewHost = factory.CreateTextViewHost(textView, true);
 
                 //options
-                //textView.Options.SetOptionValue(DefaultTextViewHostOptions.ZoomControlId, false);
                 textView.Options.SetOptionValue(DefaultTextViewHostOptions.EnableFileHealthIndicatorOptionId, false);
                 textView.Options.SetOptionValue(DefaultTextViewHostOptions.LineNumberMarginId, true);
                 textView.Options.SetOptionValue(DefaultTextViewHostOptions.GlyphMarginId, false);
