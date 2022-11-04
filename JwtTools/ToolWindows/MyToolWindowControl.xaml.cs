@@ -110,9 +110,16 @@ namespace JwtTools
         {
             if ((claimType == "exp" || claimType == "nbf" || claimType == "iat" || claimType == "auth_time"))
             {
-                var d = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(value));
+                try
+                {
+                    var d = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(value));
 
-                return d.ToLocalTime().DateTime.ToString("R");
+                    return d.ToLocalTime().DateTime.ToString("R");
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidDataException($"The value for the `{claimType}` is in invalid format.\nIt is `{value}` but needs to be in Unix EPOCH format.\n\n{ex.Message}");
+                }
             };
             return value.ToString();
         }
