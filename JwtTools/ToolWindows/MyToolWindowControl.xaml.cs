@@ -33,8 +33,8 @@ namespace JwtTools
         {
             if (string.IsNullOrWhiteSpace(JwtToken.Text))
             {
-                DecodedHeader.Content = string.Empty;
-                DecodedPayload.Content = string.Empty;
+                DecodedHeader.Text = string.Empty;
+                DecodedPayload.Text = string.Empty;
                 return;
             }
 
@@ -46,9 +46,9 @@ namespace JwtTools
                 ThreadHelper.ThrowIfNotOnUIThread();
                 JwtSignature.Text = jwt.RawSignature;
 
-                CreateTextView(JsonHelper.Format(jwt.Header.SerializeToJson(), Indentation.TwoSpaces), DecodedHeader);
-                CreateTextView(JsonHelper.Format(jwt.Payload.SerializeToJson(), Indentation.TwoSpaces), DecodedPayload);
-
+                DecodedHeader.Text = JsonHelper.Format(jwt.Header.SerializeToJson(), Indentation.TwoSpaces);
+                DecodedPayload.Text = JsonHelper.Format(jwt.Payload.SerializeToJson(), Indentation.TwoSpaces);
+                
                 var claims = new List<SimpleClaim>();
 
                 foreach (var claim in jwt.Claims)
@@ -65,8 +65,8 @@ namespace JwtTools
             }
             catch (Exception ex)
             {
-                DecodedHeader.Content = ex.Message;
-                DecodedPayload.Content = ex.Message;
+                DecodedHeader.Text = ex.Message;
+                DecodedPayload.Text = ex.Message;
             }
         }
 
