@@ -18,10 +18,12 @@
         <Label Content="Encoded Token" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBox x:Name="JwtToken" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" 
                  FontFamily="Cascadia Mono, Cascadia Code" GotFocus="JwtToken_GotFocus" />
+        <Label Content="Signature" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox x:Name="JwtSignature" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" FontFamily="Cascadia Mono, Cascadia Code" />
         <Label Content="Header: Algorithm &amp; Token Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ContentControl x:Name="DecodedHeader" VerticalAlignment="Top" MinHeight="90" MaxHeight="100" />
         <Label Content="Payload: Data" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TabControl MinHeight="125">
+        <TabControl MinHeight="225">
             <TabItem Header="Raw">
                 <ContentControl x:Name="DecodedPayload" VerticalAlignment="Top" MinHeight="120" />
             </TabItem>

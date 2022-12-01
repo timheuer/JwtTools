@@ -44,7 +44,8 @@ namespace JwtTools
                 var jwt = jwtHandler.ReadJwtToken(JwtToken.Text);
 
                 ThreadHelper.ThrowIfNotOnUIThread();
-                
+                JwtSignature.Text = jwt.RawSignature;
+
                 CreateTextView(JsonHelper.Format(jwt.Header.SerializeToJson(), Indentation.TwoSpaces), DecodedHeader);
                 CreateTextView(JsonHelper.Format(jwt.Payload.SerializeToJson(), Indentation.TwoSpaces), DecodedPayload);
 
