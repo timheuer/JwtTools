@@ -23,7 +23,7 @@
         <Label Content="Header: Algorithm &amp; Token Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ContentControl x:Name="DecodedHeader" VerticalAlignment="Top" MinHeight="90" MaxHeight="100" />
         <Label Content="Payload: Data" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TabControl MinHeight="225">
+        <TabControl MinHeight="200">
             <TabItem Header="Raw">
                 <ContentControl x:Name="DecodedPayload" VerticalAlignment="Top" MinHeight="120" />
             </TabItem>
