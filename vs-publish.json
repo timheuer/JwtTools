@@ -3,7 +3,7 @@
   "categories": [ "testing", "web", "other" ],
   "identity": {
     "internalName": "JwtTools",
-    "tags": [ "jwt", "dotnet", "aspnet" ]
+    "tags": [ "jwt", "dotnet", "aspnet", "token" ]
   },
   "overview": "README.md",
   "publisher": "TimHeuer",
