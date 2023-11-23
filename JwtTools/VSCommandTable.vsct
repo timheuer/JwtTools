@@ -10,7 +10,7 @@
     <!--This section defines the elements the user can interact with, like a menu command or a button or combo box in a toolbar. -->
     <Buttons>
       <Button guid="JwtTools" id="MyCommand" priority="0x0100" type="Button">
-        <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
+        <Parent guid="VSMainMenu" id="View.DevWindowsGroup"/>
 	    <Icon guid="ImageCatalogGuid" id="Certificate" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>

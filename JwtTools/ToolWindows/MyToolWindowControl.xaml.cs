@@ -33,8 +33,8 @@ namespace JwtTools
         {
             if (string.IsNullOrWhiteSpace(JwtToken.Text))
             {
-                DecodedHeader.Text = string.Empty;
-                DecodedPayload.Text = string.Empty;
+                DecodedHeader.Content = string.Empty;
+                DecodedPayload.Content = string.Empty;
                 return;
             }
 
@@ -46,9 +46,9 @@ namespace JwtTools
                 ThreadHelper.ThrowIfNotOnUIThread();
                 JwtSignature.Text = jwt.RawSignature;
 
-                DecodedHeader.Text = JsonHelper.Format(jwt.Header.SerializeToJson(), Indentation.TwoSpaces);
-                DecodedPayload.Text = JsonHelper.Format(jwt.Payload.SerializeToJson(), Indentation.TwoSpaces);
-                
+                CreateTextView(JsonHelper.Format(jwt.Header.SerializeToJson(), Indentation.TwoSpaces), DecodedHeader);
+                CreateTextView(JsonHelper.Format(jwt.Payload.SerializeToJson(), Indentation.TwoSpaces), DecodedPayload);  
+
                 var claims = new List<SimpleClaim>();
 
                 foreach (var claim in jwt.Claims)
@@ -65,8 +65,8 @@ namespace JwtTools
             }
             catch (Exception ex)
             {
-                DecodedHeader.Text = ex.Message;
-                DecodedPayload.Text = ex.Message;
+                DecodedHeader.Content = ex.Message;
+                DecodedPayload.Content = ex.Message;
             }
         }
 
@@ -84,8 +84,7 @@ namespace JwtTools
                     PredefinedTextViewRoles.Interactive, 
                     PredefinedTextViewRoles.Structured, 
                     PredefinedTextViewRoles.PrimaryDocument, 
-                    PredefinedTextViewRoles.Zoomable,
-                    PredefinedTextViewRoles.Analyzable);
+                    PredefinedTextViewRoles.Zoomable);
                 var textBufferFactory = componentModel.GetService<ITextBufferFactoryService>();
                 var textBuffer = textBufferFactory.CreateTextBuffer();
                 var contentType = contentFactory.GetContentType("json");
@@ -100,6 +99,9 @@ namespace JwtTools
                 textView.Options.SetOptionValue(DefaultTextViewHostOptions.EnableFileHealthIndicatorOptionId, false);
                 textView.Options.SetOptionValue(DefaultTextViewHostOptions.LineNumberMarginId, true);
                 textView.Options.SetOptionValue(DefaultTextViewHostOptions.GlyphMarginId, false);
+                textView.Options.SetOptionValue(DefaultTextViewHostOptions.SelectionMarginId, true);
+                textView.Options.SetOptionValue(DefaultTextViewHostOptions.OutliningMarginId, true);
+                textView.Options.SetOptionValue(DefaultTextViewOptions.ShowBlockStructureId, true);
                 textView.Options.SetOptionValue(DefaultTextViewHostOptions.EditingStateMarginOptionId, false);
                 textView.ZoomLevel = 100;
 

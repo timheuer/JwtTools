@@ -21,14 +21,14 @@
         <Label Content="Signature" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBox x:Name="JwtSignature" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" FontFamily="Cascadia Mono, Cascadia Code" />
         <Label Content="Header: Algorithm &amp; Token Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="DecodedHeader" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" FontFamily="Cascadia Mono, Cascadia Code" />
+        <ContentControl x:Name="DecodedHeader" VerticalAlignment="Top" MinHeight="90" MaxHeight="100"/>
         <Label Content="Payload: Data" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TabControl>
+        <TabControl MinHeight="200" toolkit:Themes.UseVsTheme="True">
             <TabItem Header="Raw">
-                <TextBox x:Name="DecodedPayload" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" FontFamily="Cascadia Mono, Cascadia Code" />
+                <ContentControl x:Name="DecodedPayload" VerticalAlignment="Top" MinHeight="200" />
             </TabItem>
             <TabItem Header="Claims">
-                <DataGrid x:Name="ClaimsGrid" AutoGenerateColumns="False" MaxHeight="500">
+                <DataGrid x:Name="ClaimsGrid" AutoGenerateColumns="False" MaxHeight="500" toolkit:Themes.UseVsTheme="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
                         <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="185"/>
