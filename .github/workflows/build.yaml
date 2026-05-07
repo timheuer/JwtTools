@@ -36,10 +36,10 @@ jobs:
       VsixManifestSourcePath: JwtTools\source.extension.cs
       
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
 
     - name: Setup .NET build dependencies
-      uses: timheuer/bootstrap-dotnet@v1
+      uses: timheuer/bootstrap-dotnet@v2
       with:
         nuget: 'false'
         sdk: 'false'
@@ -57,7 +57,7 @@ jobs:
 
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ github.event.repository.name }}.vsix
         path: /_built/**/*.vsix
@@ -68,10 +68,10 @@ jobs:
     runs-on: windows-2019
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - name: Download Package artifact
-        uses: actions/download-artifact@v3 
+        uses: actions/download-artifact@v8 
         with:
           name: ${{ github.event.repository.name }}.vsix
 
@@ -82,7 +82,7 @@ jobs:
 
       - name: Publish extension to Marketplace
         # if: ${{ contains(github.event.head_commit.message, '[release]') }}
-        uses: cezarypiatek/VsixPublisherAction@0.1
+        uses: cezarypiatek/VsixPublisherAction@1.2
         with:
           extension-file: '${{ github.event.repository.name }}.vsix'
           publish-manifest-file: 'vs-publish.json'
@@ -90,7 +90,7 @@ jobs:
 
       - name: Tag and Release
         id: tag_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           body: Release ${{ needs.build.outputs.version }}
           tag_name: ${{ needs.build.outputs.version }}

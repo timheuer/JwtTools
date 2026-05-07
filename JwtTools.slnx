@@ -1,0 +1,18 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+    <File Path="sample-jwt.txt" />
+  </Folder>
+  <Folder Name="/Workflows/">
+    <File Path=".github/workflows/build.yaml" />
+    <File Path="vs-publish.json" />
+  </Folder>
+  <Project Path="JwtTools/JwtTools.csproj" Id="88140480-274a-4551-8990-e7bb90dc911c">
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+</Solution>
