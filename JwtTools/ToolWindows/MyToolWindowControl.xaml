@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
-             xmlns:theming="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Imaging"
+             xmlns:theming="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
              xmlns:util="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Utilities"
              xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog"
              xmlns:toolkit="clr-namespace:Community.VisualStudio.Toolkit;assembly=Community.VisualStudio.Toolkit"
@@ -28,7 +28,16 @@
                 <ContentControl x:Name="DecodedPayload" VerticalAlignment="Top" MinHeight="200" />
             </TabItem>
             <TabItem Header="Claims">
-                <DataGrid x:Name="ClaimsGrid" AutoGenerateColumns="False" MaxHeight="500" toolkit:Themes.UseVsTheme="True">
+                <DataGrid x:Name="ClaimsGrid"
+                          AutoGenerateColumns="False"
+                          MaxHeight="500"
+                          toolkit:Themes.UseVsTheme="True"
+                          Background="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBackgroundBrushKey}}"
+                          Foreground="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTextBrushKey}}"
+                          BorderBrush="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBorderBrushKey}}"
+                          RowBackground="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBackgroundBrushKey}}"
+                          HorizontalGridLinesBrush="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBorderBrushKey}}"
+                          VerticalGridLinesBrush="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBorderBrushKey}}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
                         <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="185"/>
