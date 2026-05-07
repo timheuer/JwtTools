@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
-             xmlns:theming="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Imaging"
+             xmlns:theming="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+             xmlns:vs="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
              xmlns:util="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Utilities"
              xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog"
              xmlns:toolkit="clr-namespace:Community.VisualStudio.Toolkit;assembly=Community.VisualStudio.Toolkit"
@@ -13,22 +14,94 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              Name="MyToolWindow">
+    <UserControl.Resources>
+        <Style x:Key="VsThemedTabItemStyle" TargetType="{x:Type TabItem}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabGradientBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabBorderBrushKey}}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabTextBrushKey}}" />
+            <Setter Property="Padding" Value="6,2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border x:Name="TabBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1,1,1,0"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter x:Name="ContentSite"
+                                              ContentSource="Header"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabSelectedTabBrushKey}}" />
+                                <Setter TargetName="TabBorder" Property="BorderBrush" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabSelectedBorderBrushKey}}" />
+                                <Setter TargetName="TabBorder" Property="BorderThickness" Value="1,1,1,0" />
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabSelectedActiveTextBrushKey}}" />
+                                <Setter Property="Panel.ZIndex" Value="1" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabMouseOverBackgroundGradientBrushKey}}" />
+                                <Setter TargetName="TabBorder" Property="BorderBrush" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabMouseOverBorderBrushKey}}" />
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTabMouseOverTextBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="VsThemedDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBackgroundBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBorderBrushKey}}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTextBrushKey}}" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,0,1,1"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <StackPanel Margin="0,0,0,-62">
-        <Button Click="button1_Click" Width="200" Content="Decode Token" HorizontalAlignment="Left"/>
         <Label Content="Encoded Token" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBox x:Name="JwtToken" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" 
                  FontFamily="Cascadia Mono, Cascadia Code" GotFocus="JwtToken_GotFocus" />
+        <theming:DialogButton Click="button1_Click" Width="200" Content="Decode Token" HorizontalAlignment="Left" Margin="0,4,0,0" Style="{DynamicResource {x:Static vs:VsResourceKeys.ThemedDialogButtonStyleKey}}" />
         <Label Content="Signature" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBox x:Name="JwtSignature" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="60" IsReadOnly="True" FontFamily="Cascadia Mono, Cascadia Code" />
         <Label Content="Header: Algorithm &amp; Token Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ContentControl x:Name="DecodedHeader" VerticalAlignment="Top" MinHeight="90" MaxHeight="100"/>
         <Label Content="Payload: Data" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TabControl MinHeight="200" toolkit:Themes.UseVsTheme="True">
+        <TabControl MinHeight="200" toolkit:Themes.UseVsTheme="True" ItemContainerStyle="{StaticResource VsThemedTabItemStyle}">
             <TabItem Header="Raw">
                 <ContentControl x:Name="DecodedPayload" VerticalAlignment="Top" MinHeight="200" />
             </TabItem>
             <TabItem Header="Claims">
-                <DataGrid x:Name="ClaimsGrid" AutoGenerateColumns="False" MaxHeight="500" toolkit:Themes.UseVsTheme="True">
+                <DataGrid x:Name="ClaimsGrid"
+                          AutoGenerateColumns="False"
+                          MaxHeight="500"
+                          toolkit:Themes.UseVsTheme="True"
+                          Background="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBackgroundBrushKey}}"
+                          Foreground="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowTextBrushKey}}"
+                          BorderBrush="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBorderBrushKey}}"
+                           ColumnHeaderStyle="{StaticResource VsThemedDataGridColumnHeaderStyle}"
+                          RowBackground="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBackgroundBrushKey}}"
+                          HorizontalGridLinesBrush="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBorderBrushKey}}"
+                          VerticalGridLinesBrush="{DynamicResource {x:Static theming:EnvironmentColors.ToolWindowBorderBrushKey}}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
                         <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="185"/>
